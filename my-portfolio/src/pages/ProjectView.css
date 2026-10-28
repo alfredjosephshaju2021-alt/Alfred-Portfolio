@@ -57,7 +57,7 @@
 
 .project-gallery-main {
   position: relative;
-  min-height: 340px;
+  min-height: clamp(240px, 45vw, 560px);
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -176,7 +176,7 @@
 
 .project-details-grid {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
   gap: 28px 50px;
   padding: 28px 0;
   border-top: 1px solid var(--border);
@@ -315,7 +315,7 @@
   }
 
   .project-gallery-main {
-    min-height: 250px;
+    min-height: clamp(220px, 58vw, 340px);
   }
 
   .project-details-grid {
@@ -323,6 +323,13 @@
     gap: 25px;
   }
 
+}
+
+@media (min-width: 701px) and (max-width: 900px) {
+  .project-details-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

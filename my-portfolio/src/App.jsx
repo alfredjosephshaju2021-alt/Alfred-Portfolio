@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
 import Hero from './components/Hero.jsx'
@@ -10,6 +10,8 @@ import Footer from './components/Footer.jsx'
 import ProjectView from './pages/ProjectView.jsx'
 
 function App() {
+  const [isDarkMode, setIsDarkMode] = useState(false)
+
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return undefined
@@ -48,8 +50,11 @@ function App() {
       <Route
         path="/"
         element={
-          <div className="portfolio">
-            <Navbar />
+          <div className={`portfolio${isDarkMode ? ' dark-mode' : ''}`}>
+            <Navbar
+              isDarkMode={isDarkMode}
+              onToggleTheme={() => setIsDarkMode((currentMode) => !currentMode)}
+            />
             <Hero />
             <About />
             <Skills />
